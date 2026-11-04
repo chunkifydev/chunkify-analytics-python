@@ -1,5 +1,8 @@
 # Chunkify Analytics Python API library
 
+This is the API client for the Chunkify Analytics server. For automatic playback tracking
+in a browser, use [`@chunkify/player-analytics`](https://www.npmjs.com/package/@chunkify/player-analytics).
+
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/chunkify-analytics-sdk.svg?label=pypi%20(stable))](https://pypi.org/project/chunkify-analytics-sdk/)
 

@@ -1,0 +1,18 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import Union
+from typing_extensions import TypeAlias
+
+from .view_ended import ViewEnded
+from .view_started import ViewStarted
+from .view_snapshot import ViewSnapshot
+from .playback_error import PlaybackError
+from .seek_completed import SeekCompleted
+from .rendition_changed import RenditionChanged
+from .playback_state_changed import PlaybackStateChanged
+
+__all__ = ["AnalyticsEvent"]
+
+AnalyticsEvent: TypeAlias = Union[
+    ViewStarted, ViewSnapshot, PlaybackError, ViewEnded, PlaybackStateChanged, RenditionChanged, SeekCompleted
+]

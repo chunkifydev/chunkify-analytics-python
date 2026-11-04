@@ -1,0 +1,137 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from .._utils import PropertyInfo
+from .shared_params.played_range import PlayedRange
+from .shared_params.rendition_playing_time import RenditionPlayingTime
+
+__all__ = ["ViewEndedParam"]
+
+
+class ViewEndedParam(TypedDict, total=False):
+    connector_name: Required[str]
+
+    connector_version: Required[Optional[str]]
+
+    delivery_hostname: Required[Optional[str]]
+
+    delivery_request_count: Required[Optional[float]]
+
+    delivery_throughput_bps: Required[Optional[float]]
+
+    delivery_transferred_bytes: Required[Optional[float]]
+
+    dropped_video_frames: Required[Optional[float]]
+
+    environment: Required[Optional[str]]
+
+    error_category: Required[Optional[Literal["aborted", "network", "decode", "unsupported", "unknown"]]]
+
+    error_code: Required[Union[str, float, None]]
+
+    error_fatal: Required[Optional[bool]]
+
+    error_playhead_seconds: Required[Optional[float]]
+
+    event_id: Required[str]
+
+    event_name: Required[Literal["chunkify.video.view_ended"]]
+
+    first_video_frame_time_ms: Required[Optional[float]]
+
+    furthest_progress_ratio: Required[Optional[float]]
+
+    maximum_playhead_seconds: Required[float]
+
+    media_duration_seconds: Required[Optional[float]]
+
+    media_height_px: Required[Optional[float]]
+
+    media_width_px: Required[Optional[float]]
+
+    occurred_at: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
+
+    player_height_px: Required[Optional[float]]
+
+    player_name: Required[Optional[str]]
+
+    player_version: Required[Optional[str]]
+
+    player_width_px: Required[Optional[float]]
+
+    playing_time_ms: Required[float]
+
+    reason: Required[Optional[Literal["ended", "destroyed", "source_changed", "page_exit"]]]
+
+    rebuffer_count: Required[float]
+
+    rebuffer_duration_ms: Required[float]
+
+    rebuffer_ratio: Required[Optional[float]]
+
+    rendition_playing_time: Required[Optional[Iterable[RenditionPlayingTime]]]
+
+    rendition_switch_count: Required[Optional[float]]
+
+    schema_version: Required[Literal[1]]
+
+    sdk_name: Required[str]
+    """Name of the SDK or integration that produced the event.
+
+    Informational metadata, preserved as received. Must contain at least one
+    non-whitespace character.
+    """
+
+    sdk_version: Required[str]
+
+    seek_count: Required[float]
+
+    seek_duration_ms: Required[float]
+
+    selected_rendition_bitrate_bps: Required[Optional[float]]
+
+    selected_rendition_codec: Required[Optional[str]]
+
+    selected_rendition_height: Required[Optional[float]]
+
+    selected_rendition_width: Required[Optional[float]]
+
+    sequence: Required[int]
+
+    startup_outcome: Required[Optional[Literal["started", "failed_before_start", "ended_before_start"]]]
+
+    startup_time_ms: Required[Optional[float]]
+
+    total_video_frames: Required[Optional[float]]
+
+    video_id: Required[str]
+
+    view_id: Required[str]
+
+    viewer_id: Required[Optional[str]]
+
+    browser_context: object
+    """Optional browser information supplied by the player."""
+
+    played_ranges: Optional[Iterable[PlayedRange]]
+    """
+    Cumulative played media ranges for this attempt, sorted and merged without
+    overlaps. Seeking, pauses and buffering are excluded. Missing or null means
+    unavailable; an empty array means measured but no section played. Replaying a
+    section does not add another range.
+    """
+
+    playhead_seconds: Optional[float]
+    """Current media position at this event, not the maximum reached."""
+
+    visibility_state: Optional[Literal["visible", "hidden"]]
+    """Tab visibility when the event was recorded.
+
+    Hidden does not imply paused playback or identify the cause of a pause. Missing
+    on older events; null when unavailable.
+    """

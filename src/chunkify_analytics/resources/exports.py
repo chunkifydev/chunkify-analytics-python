@@ -144,6 +144,10 @@ class ExportsResource(SyncAPIResource):
         active download. S3 retention/deletion can remove source objects during a
         download.
 
+        The download URL contains the credential needed for this request. Treat it as a
+        secret until it expires. You can call this method without configuring an API key
+        on the client.
+
         Args:
           extra_headers: Send extra headers
 
@@ -366,6 +370,10 @@ class AsyncExportsResource(AsyncAPIResource):
         config.toml [rate_limits]. Link expiry is checked before starting, not during an
         active download. S3 retention/deletion can remove source objects during a
         download.
+
+        The download URL contains the credential needed for this request. Treat it as a
+        secret until it expires. You can call this method without configuring an API key
+        on the client.
 
         Args:
           extra_headers: Send extra headers

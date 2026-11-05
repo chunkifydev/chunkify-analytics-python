@@ -51,7 +51,13 @@ class HealthResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Health:
-        """Check whether the service is ready."""
+        """Check whether the service is ready.
+
+        No API key is required.
+
+        This checks collector readiness and does not return
+        project analytics.
+        """
         return self._get(
             "/healthz",
             options=make_request_options(
@@ -97,7 +103,13 @@ class AsyncHealthResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Health:
-        """Check whether the service is ready."""
+        """Check whether the service is ready.
+
+        No API key is required.
+
+        This checks collector readiness and does not return
+        project analytics.
+        """
         return await self._get(
             "/healthz",
             options=make_request_options(

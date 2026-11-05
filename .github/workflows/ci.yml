@@ -25,8 +25,20 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          set -o pipefail
+          # Retry the whole installer, including its internal Python download.
+          for attempt in 1 2 3; do
+            if curl -fsSL --retry 3 https://rye.astral.sh/get | bash; then
+              echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Rye installation failed on attempt $attempt; retrying in 5 seconds." >&2
+              sleep 5
+            fi
+          done
+          echo "::error::Rye installation failed after 3 attempts."
+          exit 1
         env:
           RYE_VERSION: '0.44.0'
           RYE_INSTALL_OPTION: '--yes'
@@ -50,8 +62,20 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye.astral.sh/get | bash
-          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+          set -o pipefail
+          # Retry the whole installer, including its internal Python download.
+          for attempt in 1 2 3; do
+            if curl -fsSL --retry 3 https://rye.astral.sh/get | bash; then
+              echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Rye installation failed on attempt $attempt; retrying in 5 seconds." >&2
+              sleep 5
+            fi
+          done
+          echo "::error::Rye installation failed after 3 attempts."
+          exit 1
         env:
           RYE_VERSION: '0.44.0'
           RYE_INSTALL_OPTION: '--yes'

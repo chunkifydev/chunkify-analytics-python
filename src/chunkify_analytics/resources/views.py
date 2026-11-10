@@ -123,6 +123,7 @@ class ViewsResource(SyncAPIResource):
         os_name: str | Omit = omit,
         page_origin: str | Omit = omit,
         page_path: str | Omit = omit,
+        playback_rate: str | Omit = omit,
         sort_by: Literal[
             "started_at",
             "video_id",
@@ -134,8 +135,11 @@ class ViewsResource(SyncAPIResource):
             "playback_score",
         ]
         | Omit = omit,
+        subtitle_language: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
+        user_id: str | Omit = omit,
         video_id: str | Omit = omit,
+        video_title: str | Omit = omit,
         view_id: str | Omit = omit,
         viewer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -195,18 +199,36 @@ class ViewsResource(SyncAPIResource):
               Metrics use the first retained view start; raw events use each event context.
               Missing values do not match.
 
+          playback_rate: Playback rate from 0.01 to 16 with at most two decimals, such as 1, 1.5 or 2;
+              2.0 and 2 are the same rate. Metrics use the rate on the first retained view
+              start; raw events use each event's value.
+
           sort_by: Sort all matching sessions before pagination. Missing values come last in both
               directions. Ties use view_id in the requested direction. Keep sort_by, order and
               filters unchanged with a cursor.
 
+          subtitle_language: Exact, case-sensitive, non-blank subtitle language tag, such as fr or en-US; und
+              for a subtitles track without a language. Metrics use the language showing on
+              the first retained view start; raw events use each event's value. Views without
+              subtitles at start do not match.
+
           to: Exclusive RFC3339 occurrence-time upper bound, with timezone. Summary/video
               queries apply it to the selected view_started event.
 
-          video_id: Exact video ID. Combined with all other filters using AND.
+          user_id: Exact integrator-supplied user ID. Selects views by their start event; event
+              lists match each event's own value. Missing/null user IDs do not match. Reports
+              with this filter read one stored row per view.
+
+          video_id: Exact video ID; must not be blank. Combined with all other filters using AND.
+
+          video_title: Exact, case-sensitive video title. Selects views by the title on their first
+              retained start; event lists match each event's own value. Views without a title
+              do not match. Reports with this filter read one stored row per view.
 
           view_id: Filter one playback attempt by view ID. Metrics use its first retained start.
 
-          viewer_id: Exact supplied viewer ID. Missing/null viewer IDs do not match.
+          viewer_id: Exact viewer ID. The Chunkify player SDK generates one per browser; missing/null
+              viewer IDs do not match.
 
           extra_headers: Send extra headers
 
@@ -239,9 +261,13 @@ class ViewsResource(SyncAPIResource):
                         "os_name": os_name,
                         "page_origin": page_origin,
                         "page_path": page_path,
+                        "playback_rate": playback_rate,
                         "sort_by": sort_by,
+                        "subtitle_language": subtitle_language,
                         "to": to,
+                        "user_id": user_id,
                         "video_id": video_id,
+                        "video_title": video_title,
                         "view_id": view_id,
                         "viewer_id": viewer_id,
                     },
@@ -349,6 +375,7 @@ class AsyncViewsResource(AsyncAPIResource):
         os_name: str | Omit = omit,
         page_origin: str | Omit = omit,
         page_path: str | Omit = omit,
+        playback_rate: str | Omit = omit,
         sort_by: Literal[
             "started_at",
             "video_id",
@@ -360,8 +387,11 @@ class AsyncViewsResource(AsyncAPIResource):
             "playback_score",
         ]
         | Omit = omit,
+        subtitle_language: str | Omit = omit,
         to: Union[str, datetime] | Omit = omit,
+        user_id: str | Omit = omit,
         video_id: str | Omit = omit,
+        video_title: str | Omit = omit,
         view_id: str | Omit = omit,
         viewer_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -421,18 +451,36 @@ class AsyncViewsResource(AsyncAPIResource):
               Metrics use the first retained view start; raw events use each event context.
               Missing values do not match.
 
+          playback_rate: Playback rate from 0.01 to 16 with at most two decimals, such as 1, 1.5 or 2;
+              2.0 and 2 are the same rate. Metrics use the rate on the first retained view
+              start; raw events use each event's value.
+
           sort_by: Sort all matching sessions before pagination. Missing values come last in both
               directions. Ties use view_id in the requested direction. Keep sort_by, order and
               filters unchanged with a cursor.
 
+          subtitle_language: Exact, case-sensitive, non-blank subtitle language tag, such as fr or en-US; und
+              for a subtitles track without a language. Metrics use the language showing on
+              the first retained view start; raw events use each event's value. Views without
+              subtitles at start do not match.
+
           to: Exclusive RFC3339 occurrence-time upper bound, with timezone. Summary/video
               queries apply it to the selected view_started event.
 
-          video_id: Exact video ID. Combined with all other filters using AND.
+          user_id: Exact integrator-supplied user ID. Selects views by their start event; event
+              lists match each event's own value. Missing/null user IDs do not match. Reports
+              with this filter read one stored row per view.
+
+          video_id: Exact video ID; must not be blank. Combined with all other filters using AND.
+
+          video_title: Exact, case-sensitive video title. Selects views by the title on their first
+              retained start; event lists match each event's own value. Views without a title
+              do not match. Reports with this filter read one stored row per view.
 
           view_id: Filter one playback attempt by view ID. Metrics use its first retained start.
 
-          viewer_id: Exact supplied viewer ID. Missing/null viewer IDs do not match.
+          viewer_id: Exact viewer ID. The Chunkify player SDK generates one per browser; missing/null
+              viewer IDs do not match.
 
           extra_headers: Send extra headers
 
@@ -465,9 +513,13 @@ class AsyncViewsResource(AsyncAPIResource):
                         "os_name": os_name,
                         "page_origin": page_origin,
                         "page_path": page_path,
+                        "playback_rate": playback_rate,
                         "sort_by": sort_by,
+                        "subtitle_language": subtitle_language,
                         "to": to,
+                        "user_id": user_id,
                         "video_id": video_id,
+                        "video_title": video_title,
                         "view_id": view_id,
                         "viewer_id": viewer_id,
                     },

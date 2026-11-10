@@ -88,6 +88,14 @@ from .retention import (
     RetentionResourceWithStreamingResponse,
     AsyncRetentionResourceWithStreamingResponse,
 )
+from .subtitles import (
+    SubtitlesResource,
+    AsyncSubtitlesResource,
+    SubtitlesResourceWithRawResponse,
+    AsyncSubtitlesResourceWithRawResponse,
+    SubtitlesResourceWithStreamingResponse,
+    AsyncSubtitlesResourceWithStreamingResponse,
+)
 from .dimensions import (
     DimensionsResource,
     AsyncDimensionsResource,
@@ -119,6 +127,14 @@ from .timeseries import (
     AsyncTimeseriesResourceWithRawResponse,
     TimeseriesResourceWithStreamingResponse,
     AsyncTimeseriesResourceWithStreamingResponse,
+)
+from .playback_rates import (
+    PlaybackRatesResource,
+    AsyncPlaybackRatesResource,
+    PlaybackRatesResourceWithRawResponse,
+    AsyncPlaybackRatesResourceWithRawResponse,
+    PlaybackRatesResourceWithStreamingResponse,
+    AsyncPlaybackRatesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -212,4 +228,16 @@ __all__ = [
     "AsyncRenditionsResourceWithRawResponse",
     "RenditionsResourceWithStreamingResponse",
     "AsyncRenditionsResourceWithStreamingResponse",
+    "SubtitlesResource",
+    "AsyncSubtitlesResource",
+    "SubtitlesResourceWithRawResponse",
+    "AsyncSubtitlesResourceWithRawResponse",
+    "SubtitlesResourceWithStreamingResponse",
+    "AsyncSubtitlesResourceWithStreamingResponse",
+    "PlaybackRatesResource",
+    "AsyncPlaybackRatesResource",
+    "PlaybackRatesResourceWithRawResponse",
+    "AsyncPlaybackRatesResourceWithRawResponse",
+    "PlaybackRatesResourceWithStreamingResponse",
+    "AsyncPlaybackRatesResourceWithStreamingResponse",
 ]

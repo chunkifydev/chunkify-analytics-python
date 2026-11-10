@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Union
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ExportListColumnsParams"]
@@ -20,13 +21,29 @@ class ExportListColumnsParams(TypedDict, total=False):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ]
     ]
     """Report whose CSV columns to list."""
 
-    group_by: Literal[
-        "browser_name", "os_name", "device_type", "continent", "country", "city", "page_origin", "page_path"
+    group_by: Union[
+        Literal[
+            "browser_name",
+            "os_name",
+            "device_type",
+            "continent",
+            "country",
+            "city",
+            "page_origin",
+            "page_path",
+            "subtitle_language",
+            "playback_rate",
+            "video_title",
+            "user_id",
+        ],
+        str,
     ]
     """Optional on summary, quality and engagement.
 
@@ -38,7 +55,11 @@ class ExportListColumnsParams(TypedDict, total=False):
     combining names shared by different countries. Page groups use the first
     retained start even if playback continues after navigation. Filter by
     page_origin when grouping page_path to distinguish identical paths on different
-    sites.
+    sites. video_title groups by the title on each view's first retained start, so a
+    renamed video counts each view under the title it started with. user_id groups
+    by the user ID on each view's first retained start. Use custom.<key>, such as
+    custom.plan, to group by a custom dimension; views without the key form the null
+    group.
     """
 
     kind: Literal["summary", "quality", "engagement"]

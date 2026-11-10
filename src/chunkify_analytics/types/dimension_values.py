@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -15,18 +15,27 @@ class Value(BaseModel):
 
 
 class DimensionValues(BaseModel):
-    dimension: Literal[
-        "browser_name",
-        "os_name",
-        "device_type",
-        "video_id",
-        "viewer_id",
-        "continent",
-        "country",
-        "city",
-        "page_origin",
-        "page_path",
+    dimension: Union[
+        Literal[
+            "browser_name",
+            "os_name",
+            "device_type",
+            "video_id",
+            "viewer_id",
+            "user_id",
+            "video_title",
+            "continent",
+            "country",
+            "city",
+            "page_origin",
+            "page_path",
+            "subtitle_language",
+            "playback_rate",
+            "custom_keys",
+        ],
+        str,
     ]
+    """One custom dimension's values, such as custom.plan."""
 
     next_cursor: Optional[str] = None
 

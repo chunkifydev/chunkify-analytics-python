@@ -32,7 +32,11 @@ class View(BaseModel):
 
     startup_time_ms: Optional[float] = None
 
+    user_id: Optional[str] = None
+
     video_id: str
+
+    video_title: Optional[str] = None
 
     view_id: str
 

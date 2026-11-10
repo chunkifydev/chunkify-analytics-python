@@ -3,6 +3,7 @@
 ```python
 from chunkify_analytics.types import (
     BrowserContext,
+    CustomDimensions,
     Error,
     EventContext,
     EventEnvelope,
@@ -14,12 +15,14 @@ from chunkify_analytics.types import (
     OtlpLogRecord,
     OtlpResource,
     OtlpScope,
+    PlaybackRatePlayingTime,
     PlaybackScore,
     PlayedRange,
     ProgressReached,
     RenditionPlayingTime,
     StartupOutcomes,
     StoredOtlpContext,
+    SubtitlePlayingTime,
     ViewMetrics,
     WatchTimeDistribution,
 )
@@ -48,10 +51,12 @@ from chunkify_analytics.types import (
     NativeCreated,
     NativeDuplicate,
     PlaybackError,
+    PlaybackRateChanged,
     PlaybackStateChanged,
     RenditionChanged,
     SeekCompleted,
     StoredEvent,
+    SubtitleChanged,
     ViewEnded,
     ViewSnapshot,
     ViewStarted,
@@ -261,3 +266,27 @@ from chunkify_analytics.types import RenditionMetric, RenditionReport
 Methods:
 
 - <code title="get /v1/renditions">client.renditions.<a href="./src/chunkify_analytics/resources/renditions.py">retrieve</a>(\*\*<a href="src/chunkify_analytics/types/rendition_retrieve_params.py">params</a>) -> <a href="./src/chunkify_analytics/types/rendition_report.py">RenditionReport</a></code>
+
+# Subtitles
+
+Types:
+
+```python
+from chunkify_analytics.types import SubtitleMetric, SubtitleReport
+```
+
+Methods:
+
+- <code title="get /v1/subtitles">client.subtitles.<a href="./src/chunkify_analytics/resources/subtitles.py">retrieve</a>(\*\*<a href="src/chunkify_analytics/types/subtitle_retrieve_params.py">params</a>) -> <a href="./src/chunkify_analytics/types/subtitle_report.py">SubtitleReport</a></code>
+
+# PlaybackRates
+
+Types:
+
+```python
+from chunkify_analytics.types import PlaybackRateMetric, PlaybackRateReport
+```
+
+Methods:
+
+- <code title="get /v1/playback-rates">client.playback_rates.<a href="./src/chunkify_analytics/resources/playback_rates.py">retrieve</a>(\*\*<a href="src/chunkify_analytics/types/playback_rate_retrieve_params.py">params</a>) -> <a href="./src/chunkify_analytics/types/playback_rate_report.py">PlaybackRateReport</a></code>

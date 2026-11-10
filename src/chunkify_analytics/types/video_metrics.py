@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+
 from .._models import BaseModel
 from .shared.playback_score import PlaybackScore
 
@@ -14,5 +16,8 @@ class VideoMetrics(BaseModel):
     unique_viewers: int
 
     video_id: str
+
+    video_title: Optional[str] = None
+    """Title from the most recently received selected start that supplied one."""
 
     views: int

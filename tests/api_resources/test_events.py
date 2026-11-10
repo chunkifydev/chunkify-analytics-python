@@ -45,10 +45,14 @@ class TestEvents:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
-            video_id="video_id",
+            user_id="x",
+            video_id="P",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(SyncEventsPage[StoredEvent], event, path=["response"])
 
@@ -203,6 +207,19 @@ class TestEvents:
                 "view_id": "616992d2-6db6-4578-8361-3f8813e963be",
                 "viewer_id": None,
                 "browser_context": {},
+                "custom": {
+                    "plan": "premium",
+                    "ab_test": "B",
+                    "seats": 5,
+                    "trial": False,
+                },
+                "playback_rate": 0.01,
+                "playback_rate_playing_time": [
+                    {
+                        "playing_time_ms": 0,
+                        "rate": 0.01,
+                    }
+                ],
                 "played_ranges": [
                     {
                         "end_seconds": 0,
@@ -210,6 +227,15 @@ class TestEvents:
                     }
                 ],
                 "playhead_seconds": 0,
+                "subtitle_language": "P",
+                "subtitle_playing_time": [
+                    {
+                        "language": "P",
+                        "playing_time_ms": 0,
+                    }
+                ],
+                "user_id": "x",
+                "video_title": "x",
                 "visibility_state": "visible",
             },
             content_encoding="identity",
@@ -388,10 +414,14 @@ class TestAsyncEvents:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
-            video_id="video_id",
+            user_id="x",
+            video_id="P",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(AsyncEventsPage[StoredEvent], event, path=["response"])
 
@@ -546,6 +576,19 @@ class TestAsyncEvents:
                 "view_id": "616992d2-6db6-4578-8361-3f8813e963be",
                 "viewer_id": None,
                 "browser_context": {},
+                "custom": {
+                    "plan": "premium",
+                    "ab_test": "B",
+                    "seats": 5,
+                    "trial": False,
+                },
+                "playback_rate": 0.01,
+                "playback_rate_playing_time": [
+                    {
+                        "playing_time_ms": 0,
+                        "rate": 0.01,
+                    }
+                ],
                 "played_ranges": [
                     {
                         "end_seconds": 0,
@@ -553,6 +596,15 @@ class TestAsyncEvents:
                     }
                 ],
                 "playhead_seconds": 0,
+                "subtitle_language": "P",
+                "subtitle_playing_time": [
+                    {
+                        "language": "P",
+                        "playing_time_ms": 0,
+                    }
+                ],
+                "user_id": "x",
+                "video_title": "x",
                 "visibility_state": "visible",
             },
             content_encoding="identity",

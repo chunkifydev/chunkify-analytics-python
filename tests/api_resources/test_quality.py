@@ -40,10 +40,14 @@ class TestQuality:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
-            video_id="video_id",
+            user_id="x",
+            video_id="P",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(QualityResponse, quality, path=["response"])
 
@@ -97,10 +101,14 @@ class TestAsyncQuality:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
-            video_id="video_id",
+            user_id="x",
+            video_id="P",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(QualityResponse, quality, path=["response"])
 

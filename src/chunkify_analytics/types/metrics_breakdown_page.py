@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
 from .metrics import Metrics
@@ -16,9 +16,24 @@ class Group(BaseModel):
 
 
 class MetricsBreakdownPage(BaseModel):
-    group_by: Literal[
-        "browser_name", "os_name", "device_type", "continent", "country", "city", "page_origin", "page_path"
+    group_by: Union[
+        Literal[
+            "browser_name",
+            "os_name",
+            "device_type",
+            "continent",
+            "country",
+            "city",
+            "page_origin",
+            "page_path",
+            "subtitle_language",
+            "playback_rate",
+            "video_title",
+            "user_id",
+        ],
+        str,
     ]
+    """A custom dimension key, such as custom.plan."""
 
     groups: List[Group]
 

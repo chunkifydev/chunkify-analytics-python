@@ -10,7 +10,9 @@ from .view_started_param import ViewStartedParam
 from .view_snapshot_param import ViewSnapshotParam
 from .playback_error_param import PlaybackErrorParam
 from .seek_completed_param import SeekCompletedParam
+from .subtitle_changed_param import SubtitleChangedParam
 from .rendition_changed_param import RenditionChangedParam
+from .playback_rate_changed_param import PlaybackRateChangedParam
 from .playback_state_changed_param import PlaybackStateChangedParam
 
 __all__ = ["AnalyticsEventParam"]
@@ -23,4 +25,6 @@ AnalyticsEventParam: TypeAlias = Union[
     PlaybackStateChangedParam,
     RenditionChangedParam,
     SeekCompletedParam,
+    SubtitleChangedParam,
+    PlaybackRateChangedParam,
 ]

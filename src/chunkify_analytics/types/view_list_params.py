@@ -85,6 +85,13 @@ class ViewListParams(TypedDict, total=False):
     Missing values do not match.
     """
 
+    playback_rate: str
+    """
+    Playback rate from 0.01 to 16 with at most two decimals, such as 1, 1.5 or 2;
+    2.0 and 2 are the same rate. Metrics use the rate on the first retained view
+    start; raw events use each event's value.
+    """
+
     sort_by: Literal[
         "started_at",
         "video_id",
@@ -101,17 +108,45 @@ class ViewListParams(TypedDict, total=False):
     direction. Keep sort_by, order and filters unchanged with a cursor.
     """
 
+    subtitle_language: str
+    """
+    Exact, case-sensitive, non-blank subtitle language tag, such as fr or en-US; und
+    for a subtitles track without a language. Metrics use the language showing on
+    the first retained view start; raw events use each event's value. Views without
+    subtitles at start do not match.
+    """
+
     to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Exclusive RFC3339 occurrence-time upper bound, with timezone.
 
     Summary/video queries apply it to the selected view_started event.
     """
 
+    user_id: str
+    """Exact integrator-supplied user ID.
+
+    Selects views by their start event; event lists match each event's own value.
+    Missing/null user IDs do not match. Reports with this filter read one stored row
+    per view.
+    """
+
     video_id: str
-    """Exact video ID. Combined with all other filters using AND."""
+    """Exact video ID; must not be blank. Combined with all other filters using AND."""
+
+    video_title: str
+    """Exact, case-sensitive video title.
+
+    Selects views by the title on their first retained start; event lists match each
+    event's own value. Views without a title do not match. Reports with this filter
+    read one stored row per view.
+    """
 
     view_id: str
     """Filter one playback attempt by view ID. Metrics use its first retained start."""
 
     viewer_id: str
-    """Exact supplied viewer ID. Missing/null viewer IDs do not match."""
+    """Exact viewer ID.
+
+    The Chunkify player SDK generates one per browser; missing/null viewer IDs do
+    not match.
+    """

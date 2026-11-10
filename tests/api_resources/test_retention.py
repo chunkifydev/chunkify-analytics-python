@@ -22,7 +22,7 @@ class TestRetention:
     @parametrize
     def test_method_retrieve(self, client: ChunkifyAnalytics) -> None:
         retention = client.retention.retrieve(
-            video_id="video_id",
+            video_id="P",
         )
         assert_matches_type(RetentionReport, retention, path=["response"])
 
@@ -30,7 +30,7 @@ class TestRetention:
     @parametrize
     def test_method_retrieve_with_all_params(self, client: ChunkifyAnalytics) -> None:
         retention = client.retention.retrieve(
-            video_id="video_id",
+            video_id="P",
             browser_name="x",
             city="x",
             continent="AF",
@@ -40,9 +40,13 @@ class TestRetention:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
+            user_id="x",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(RetentionReport, retention, path=["response"])
 
@@ -50,7 +54,7 @@ class TestRetention:
     @parametrize
     def test_raw_response_retrieve(self, client: ChunkifyAnalytics) -> None:
         response = client.retention.with_raw_response.retrieve(
-            video_id="video_id",
+            video_id="P",
         )
 
         assert response.is_closed is True
@@ -62,7 +66,7 @@ class TestRetention:
     @parametrize
     def test_streaming_response_retrieve(self, client: ChunkifyAnalytics) -> None:
         with client.retention.with_streaming_response.retrieve(
-            video_id="video_id",
+            video_id="P",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -82,7 +86,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncChunkifyAnalytics) -> None:
         retention = await async_client.retention.retrieve(
-            video_id="video_id",
+            video_id="P",
         )
         assert_matches_type(RetentionReport, retention, path=["response"])
 
@@ -90,7 +94,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncChunkifyAnalytics) -> None:
         retention = await async_client.retention.retrieve(
-            video_id="video_id",
+            video_id="P",
             browser_name="x",
             city="x",
             continent="AF",
@@ -100,9 +104,13 @@ class TestAsyncRetention:
             os_name="x",
             page_origin="x",
             page_path="x",
+            playback_rate="269125115713",
+            subtitle_language="P",
             to=parse_datetime("2019-12-27T18:11:19.117Z"),
+            user_id="x",
+            video_title="x",
             view_id="x",
-            viewer_id="viewer_id",
+            viewer_id="x",
         )
         assert_matches_type(RetentionReport, retention, path=["response"])
 
@@ -110,7 +118,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncChunkifyAnalytics) -> None:
         response = await async_client.retention.with_raw_response.retrieve(
-            video_id="video_id",
+            video_id="P",
         )
 
         assert response.is_closed is True
@@ -122,7 +130,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncChunkifyAnalytics) -> None:
         async with async_client.retention.with_streaming_response.retrieve(
-            video_id="video_id",
+            video_id="P",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .shared.played_range import PlayedRange
+from .shared.browser_context import BrowserContext
 from .shared.subtitle_playing_time import SubtitlePlayingTime
 from .shared.rendition_playing_time import RenditionPlayingTime
 from .shared.playback_rate_playing_time import PlaybackRatePlayingTime
@@ -119,8 +120,13 @@ class ViewSnapshot(BaseModel):
     the page's localStorage.
     """
 
-    browser_context: Optional[object] = None
-    """Optional browser information supplied by the player."""
+    browser_context: Optional[BrowserContext] = None
+    """Browser and device information.
+
+    The Chunkify player sends every field, with null for unavailable measurements.
+    Other integrations may omit any field except schema_version. Extra properties
+    are preserved.
+    """
 
     playback_rate: Optional[float] = None
     """

@@ -23,6 +23,8 @@ class ExportCreateParams(TypedDict, total=False):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ]
     ]

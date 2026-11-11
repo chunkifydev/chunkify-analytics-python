@@ -8,11 +8,21 @@ from .view_started import ViewStarted
 from .view_snapshot import ViewSnapshot
 from .playback_error import PlaybackError
 from .seek_completed import SeekCompleted
+from .subtitle_changed import SubtitleChanged
 from .rendition_changed import RenditionChanged
+from .playback_rate_changed import PlaybackRateChanged
 from .playback_state_changed import PlaybackStateChanged
 
 __all__ = ["AnalyticsEvent"]
 
 AnalyticsEvent: TypeAlias = Union[
-    ViewStarted, ViewSnapshot, PlaybackError, ViewEnded, PlaybackStateChanged, RenditionChanged, SeekCompleted
+    ViewStarted,
+    ViewSnapshot,
+    PlaybackError,
+    ViewEnded,
+    PlaybackStateChanged,
+    RenditionChanged,
+    SeekCompleted,
+    SubtitleChanged,
+    PlaybackRateChanged,
 ]

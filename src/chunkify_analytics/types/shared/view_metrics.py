@@ -4,7 +4,9 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 from .played_range import PlayedRange
+from .subtitle_playing_time import SubtitlePlayingTime
 from .rendition_playing_time import RenditionPlayingTime
+from .playback_rate_playing_time import PlaybackRatePlayingTime
 
 __all__ = ["ViewMetrics"]
 
@@ -62,6 +64,18 @@ class ViewMetrics(BaseModel):
 
     total_video_frames: Optional[float] = None
 
+    playback_rate: Optional[float] = None
+    """
+    Current playback rate, rounded to two decimals, such as 1, 1.5 or 2; from 0.01
+    to 16. Optional.
+    """
+
+    playback_rate_playing_time: Optional[List[PlaybackRatePlayingTime]] = None
+    """Cumulative playing time per playback rate for this attempt.
+
+    At most 32 entries. Optional.
+    """
+
     played_ranges: Optional[List[PlayedRange]] = None
     """
     Cumulative played media ranges for this attempt, sorted and merged without
@@ -72,3 +86,15 @@ class ViewMetrics(BaseModel):
 
     playhead_seconds: Optional[float] = None
     """Current media position at this event, not the maximum reached."""
+
+    subtitle_language: Optional[str] = None
+    """
+    Language tag (BCP 47) of the showing subtitles or captions track; und when the
+    track declares no language; null when subtitles are off. Optional.
+    """
+
+    subtitle_playing_time: Optional[List[SubtitlePlayingTime]] = None
+    """
+    Cumulative playing time per subtitle language for this attempt, null language
+    meaning subtitles off. At most 32 entries. Optional.
+    """

@@ -30,18 +30,27 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
 
     device_type: Literal["desktop", "mobile", "tablet", "unknown"]
 
-    dimension: Literal[
-        "browser_name",
-        "os_name",
-        "device_type",
-        "video_id",
-        "viewer_id",
-        "continent",
-        "country",
-        "city",
-        "page_origin",
-        "page_path",
+    dimension: Union[
+        Literal[
+            "browser_name",
+            "os_name",
+            "device_type",
+            "video_id",
+            "viewer_id",
+            "user_id",
+            "video_title",
+            "continent",
+            "country",
+            "city",
+            "page_origin",
+            "page_path",
+            "subtitle_language",
+            "playback_rate",
+            "custom_keys",
+        ],
+        str,
     ]
+    """One custom dimension's values, such as custom.plan."""
 
     event_name: Literal[
         "chunkify.video.view_started",
@@ -51,11 +60,28 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
         "chunkify.video.playback_state_changed",
         "chunkify.video.rendition_changed",
         "chunkify.video.seek_completed",
+        "chunkify.video.subtitle_changed",
+        "chunkify.video.playback_rate_changed",
     ]
 
-    group_by: Literal[
-        "browser_name", "os_name", "device_type", "continent", "country", "city", "page_origin", "page_path"
+    group_by: Union[
+        Literal[
+            "browser_name",
+            "os_name",
+            "device_type",
+            "continent",
+            "country",
+            "city",
+            "page_origin",
+            "page_path",
+            "subtitle_language",
+            "playback_rate",
+            "video_title",
+            "user_id",
+        ],
+        str,
     ]
+    """A custom dimension key, such as custom.plan."""
 
     has_fatal_error: bool
 
@@ -79,6 +105,8 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
     event for raw-event exports.
     """
 
+    playback_rate: str
+
     sort_by: Literal[
         "video_id",
         "views",
@@ -98,9 +126,15 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
     videos and started_at for views.
     """
 
+    subtitle_language: str
+
     to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
+    user_id: str
+
     video_id: str
+
+    video_title: str
 
     view_id: str
 

@@ -14,9 +14,12 @@ from .browser_context import BrowserContext as BrowserContext
 from .otlp_log_record import OtlpLogRecord as OtlpLogRecord
 from .progress_reached import ProgressReached as ProgressReached
 from .startup_outcomes import StartupOutcomes as StartupOutcomes
+from .custom_dimensions import CustomDimensions as CustomDimensions
 from .metric_count_ratio import MetricCountRatio as MetricCountRatio
 from .stored_otlp_context import StoredOtlpContext as StoredOtlpContext
 from .otlp_attribute_value import OtlpAttributeValue as OtlpAttributeValue
+from .subtitle_playing_time import SubtitlePlayingTime as SubtitlePlayingTime
 from .otlp_context_attribute import OtlpContextAttribute as OtlpContextAttribute
 from .rendition_playing_time import RenditionPlayingTime as RenditionPlayingTime
 from .watch_time_distribution import WatchTimeDistribution as WatchTimeDistribution
+from .playback_rate_playing_time import PlaybackRatePlayingTime as PlaybackRatePlayingTime

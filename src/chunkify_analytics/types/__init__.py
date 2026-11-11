@@ -22,12 +22,15 @@ from .shared import (
     BrowserContext as BrowserContext,
     ProgressReached as ProgressReached,
     StartupOutcomes as StartupOutcomes,
+    CustomDimensions as CustomDimensions,
     MetricCountRatio as MetricCountRatio,
     StoredOtlpContext as StoredOtlpContext,
     OtlpAttributeValue as OtlpAttributeValue,
+    SubtitlePlayingTime as SubtitlePlayingTime,
     OtlpContextAttribute as OtlpContextAttribute,
     RenditionPlayingTime as RenditionPlayingTime,
     WatchTimeDistribution as WatchTimeDistribution,
+    PlaybackRatePlayingTime as PlaybackRatePlayingTime,
 )
 from .metrics import Metrics as Metrics
 from .project import Project as Project
@@ -55,6 +58,8 @@ from .seek_completed import SeekCompleted as SeekCompleted
 from .analytics_event import AnalyticsEvent as AnalyticsEvent
 from .created_project import CreatedProject as CreatedProject
 from .deleted_project import DeletedProject as DeletedProject
+from .subtitle_metric import SubtitleMetric as SubtitleMetric
+from .subtitle_report import SubtitleReport as SubtitleReport
 from .dimension_values import DimensionValues as DimensionValues
 from .metrics_response import MetricsResponse as MetricsResponse
 from .native_duplicate import NativeDuplicate as NativeDuplicate
@@ -63,6 +68,7 @@ from .rendition_metric import RenditionMetric as RenditionMetric
 from .rendition_report import RenditionReport as RenditionReport
 from .retention_bucket import RetentionBucket as RetentionBucket
 from .retention_report import RetentionReport as RetentionReport
+from .subtitle_changed import SubtitleChanged as SubtitleChanged
 from .view_ended_param import ViewEndedParam as ViewEndedParam
 from .view_list_params import ViewListParams as ViewListParams
 from .error_list_params import ErrorListParams as ErrorListParams
@@ -80,19 +86,24 @@ from .timeseries_response import TimeseriesResponse as TimeseriesResponse
 from .view_snapshot_param import ViewSnapshotParam as ViewSnapshotParam
 from .export_create_params import ExportCreateParams as ExportCreateParams
 from .playback_error_param import PlaybackErrorParam as PlaybackErrorParam
+from .playback_rate_metric import PlaybackRateMetric as PlaybackRateMetric
+from .playback_rate_report import PlaybackRateReport as PlaybackRateReport
 from .seek_completed_param import SeekCompletedParam as SeekCompletedParam
 from .view_retrieve_params import ViewRetrieveParams as ViewRetrieveParams
 from .analytics_event_param import AnalyticsEventParam as AnalyticsEventParam
 from .engagement_timeseries import EngagementTimeseries as EngagementTimeseries
 from .event_ingest_response import EventIngestResponse as EventIngestResponse
+from .playback_rate_changed import PlaybackRateChanged as PlaybackRateChanged
 from .project_update_params import ProjectUpdateParams as ProjectUpdateParams
 from .metrics_breakdown_page import MetricsBreakdownPage as MetricsBreakdownPage
 from .playback_state_changed import PlaybackStateChanged as PlaybackStateChanged
 from .quality_breakdown_page import QualityBreakdownPage as QualityBreakdownPage
+from .subtitle_changed_param import SubtitleChangedParam as SubtitleChangedParam
 from .quality_retrieve_params import QualityRetrieveParams as QualityRetrieveParams
 from .rendition_changed_param import RenditionChangedParam as RenditionChangedParam
 from .summary_retrieve_params import SummaryRetrieveParams as SummaryRetrieveParams
 from .export_download_response import ExportDownloadResponse as ExportDownloadResponse
+from .subtitle_retrieve_params import SubtitleRetrieveParams as SubtitleRetrieveParams
 from .timesery_retrieve_params import TimeseryRetrieveParams as TimeseryRetrieveParams
 from .engagement_breakdown_page import EngagementBreakdownPage as EngagementBreakdownPage
 from .quality_timeseries_bucket import QualityTimeseriesBucket as QualityTimeseriesBucket
@@ -101,9 +112,11 @@ from .retention_retrieve_params import RetentionRetrieveParams as RetentionRetri
 from .engagement_retrieve_params import EngagementRetrieveParams as EngagementRetrieveParams
 from .export_list_columns_params import ExportListColumnsParams as ExportListColumnsParams
 from .admin_create_project_params import AdminCreateProjectParams as AdminCreateProjectParams
+from .playback_rate_changed_param import PlaybackRateChangedParam as PlaybackRateChangedParam
 from .dimension_list_values_params import DimensionListValuesParams as DimensionListValuesParams
 from .engagement_timeseries_bucket import EngagementTimeseriesBucket as EngagementTimeseriesBucket
 from .playback_state_changed_param import PlaybackStateChangedParam as PlaybackStateChangedParam
+from .playback_rate_retrieve_params import PlaybackRateRetrieveParams as PlaybackRateRetrieveParams
 
 # Rebuild cyclical models only after all modules are imported.
 # This ensures that, when building the deferred (due to cyclical references) model schema,

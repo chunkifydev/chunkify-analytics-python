@@ -48,10 +48,12 @@ if TYPE_CHECKING:
         quality,
         summary,
         retention,
+        subtitles,
         dimensions,
         engagement,
         renditions,
         timeseries,
+        playback_rates,
     )
     from .resources.views import ViewsResource, AsyncViewsResource
     from .resources.errors import ErrorsResource, AsyncErrorsResource
@@ -62,11 +64,13 @@ if TYPE_CHECKING:
     from .resources.quality import QualityResource, AsyncQualityResource
     from .resources.summary import SummaryResource, AsyncSummaryResource
     from .resources.retention import RetentionResource, AsyncRetentionResource
+    from .resources.subtitles import SubtitlesResource, AsyncSubtitlesResource
     from .resources.dimensions import DimensionsResource, AsyncDimensionsResource
     from .resources.engagement import EngagementResource, AsyncEngagementResource
     from .resources.renditions import RenditionsResource, AsyncRenditionsResource
     from .resources.timeseries import TimeseriesResource, AsyncTimeseriesResource
     from .resources.admin.admin import AdminResource, AsyncAdminResource
+    from .resources.playback_rates import PlaybackRatesResource, AsyncPlaybackRatesResource
     from .resources.project.project import ProjectResource, AsyncProjectResource
 
 __all__ = [
@@ -258,6 +262,20 @@ class ChunkifyAnalytics(SyncAPIClient):
         from .resources.renditions import RenditionsResource
 
         return RenditionsResource(self)
+
+    @cached_property
+    def subtitles(self) -> SubtitlesResource:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import SubtitlesResource
+
+        return SubtitlesResource(self)
+
+    @cached_property
+    def playback_rates(self) -> PlaybackRatesResource:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import PlaybackRatesResource
+
+        return PlaybackRatesResource(self)
 
     @cached_property
     def with_raw_response(self) -> ChunkifyAnalyticsWithRawResponse:
@@ -584,6 +602,20 @@ class AsyncChunkifyAnalytics(AsyncAPIClient):
         return AsyncRenditionsResource(self)
 
     @cached_property
+    def subtitles(self) -> AsyncSubtitlesResource:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import AsyncSubtitlesResource
+
+        return AsyncSubtitlesResource(self)
+
+    @cached_property
+    def playback_rates(self) -> AsyncPlaybackRatesResource:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import AsyncPlaybackRatesResource
+
+        return AsyncPlaybackRatesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncChunkifyAnalyticsWithRawResponse:
         return AsyncChunkifyAnalyticsWithRawResponse(self)
 
@@ -838,6 +870,20 @@ class ChunkifyAnalyticsWithRawResponse:
 
         return RenditionsResourceWithRawResponse(self._client.renditions)
 
+    @cached_property
+    def subtitles(self) -> subtitles.SubtitlesResourceWithRawResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import SubtitlesResourceWithRawResponse
+
+        return SubtitlesResourceWithRawResponse(self._client.subtitles)
+
+    @cached_property
+    def playback_rates(self) -> playback_rates.PlaybackRatesResourceWithRawResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import PlaybackRatesResourceWithRawResponse
+
+        return PlaybackRatesResourceWithRawResponse(self._client.playback_rates)
+
 
 class AsyncChunkifyAnalyticsWithRawResponse:
     _client: AsyncChunkifyAnalytics
@@ -947,6 +993,20 @@ class AsyncChunkifyAnalyticsWithRawResponse:
         from .resources.renditions import AsyncRenditionsResourceWithRawResponse
 
         return AsyncRenditionsResourceWithRawResponse(self._client.renditions)
+
+    @cached_property
+    def subtitles(self) -> subtitles.AsyncSubtitlesResourceWithRawResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import AsyncSubtitlesResourceWithRawResponse
+
+        return AsyncSubtitlesResourceWithRawResponse(self._client.subtitles)
+
+    @cached_property
+    def playback_rates(self) -> playback_rates.AsyncPlaybackRatesResourceWithRawResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import AsyncPlaybackRatesResourceWithRawResponse
+
+        return AsyncPlaybackRatesResourceWithRawResponse(self._client.playback_rates)
 
 
 class ChunkifyAnalyticsWithStreamedResponse:
@@ -1058,6 +1118,20 @@ class ChunkifyAnalyticsWithStreamedResponse:
 
         return RenditionsResourceWithStreamingResponse(self._client.renditions)
 
+    @cached_property
+    def subtitles(self) -> subtitles.SubtitlesResourceWithStreamingResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import SubtitlesResourceWithStreamingResponse
+
+        return SubtitlesResourceWithStreamingResponse(self._client.subtitles)
+
+    @cached_property
+    def playback_rates(self) -> playback_rates.PlaybackRatesResourceWithStreamingResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import PlaybackRatesResourceWithStreamingResponse
+
+        return PlaybackRatesResourceWithStreamingResponse(self._client.playback_rates)
+
 
 class AsyncChunkifyAnalyticsWithStreamedResponse:
     _client: AsyncChunkifyAnalytics
@@ -1167,6 +1241,20 @@ class AsyncChunkifyAnalyticsWithStreamedResponse:
         from .resources.renditions import AsyncRenditionsResourceWithStreamingResponse
 
         return AsyncRenditionsResourceWithStreamingResponse(self._client.renditions)
+
+    @cached_property
+    def subtitles(self) -> subtitles.AsyncSubtitlesResourceWithStreamingResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.subtitles import AsyncSubtitlesResourceWithStreamingResponse
+
+        return AsyncSubtitlesResourceWithStreamingResponse(self._client.subtitles)
+
+    @cached_property
+    def playback_rates(self) -> playback_rates.AsyncPlaybackRatesResourceWithStreamingResponse:
+        """Private retained-event and view-cohort queries."""
+        from .resources.playback_rates import AsyncPlaybackRatesResourceWithStreamingResponse
+
+        return AsyncPlaybackRatesResourceWithStreamingResponse(self._client.playback_rates)
 
 
 Client = ChunkifyAnalytics

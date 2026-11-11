@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Union
 from typing_extensions import Literal
 
 import httpx
@@ -59,6 +60,8 @@ class ExportsResource(SyncAPIResource):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ],
         columns: SequenceNotStr[str] | Omit = omit,
@@ -186,10 +189,26 @@ class ExportsResource(SyncAPIResource):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ],
-        group_by: Literal[
-            "browser_name", "os_name", "device_type", "continent", "country", "city", "page_origin", "page_path"
+        group_by: Union[
+            Literal[
+                "browser_name",
+                "os_name",
+                "device_type",
+                "continent",
+                "country",
+                "city",
+                "page_origin",
+                "page_path",
+                "subtitle_language",
+                "playback_rate",
+                "video_title",
+                "user_id",
+            ],
+            str,
         ]
         | Omit = omit,
         kind: Literal["summary", "quality", "engagement"] | Omit = omit,
@@ -218,7 +237,11 @@ class ExportsResource(SyncAPIResource):
               name; filter by country to avoid combining names shared by different countries.
               Page groups use the first retained start even if playback continues after
               navigation. Filter by page_origin when grouping page_path to distinguish
-              identical paths on different sites.
+              identical paths on different sites. video_title groups by the title on each
+              view's first retained start, so a renamed video counts each view under the title
+              it started with. user_id groups by the user ID on each view's first retained
+              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
+              views without the key form the null group.
 
           kind: Metric set for every time bucket. Uses the same calculations and sample counts
               as the corresponding totals route.
@@ -286,6 +309,8 @@ class AsyncExportsResource(AsyncAPIResource):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ],
         columns: SequenceNotStr[str] | Omit = omit,
@@ -413,10 +438,26 @@ class AsyncExportsResource(AsyncAPIResource):
             "errors",
             "dimensions",
             "renditions",
+            "subtitles",
+            "playback_rates",
             "retention",
         ],
-        group_by: Literal[
-            "browser_name", "os_name", "device_type", "continent", "country", "city", "page_origin", "page_path"
+        group_by: Union[
+            Literal[
+                "browser_name",
+                "os_name",
+                "device_type",
+                "continent",
+                "country",
+                "city",
+                "page_origin",
+                "page_path",
+                "subtitle_language",
+                "playback_rate",
+                "video_title",
+                "user_id",
+            ],
+            str,
         ]
         | Omit = omit,
         kind: Literal["summary", "quality", "engagement"] | Omit = omit,
@@ -445,7 +486,11 @@ class AsyncExportsResource(AsyncAPIResource):
               name; filter by country to avoid combining names shared by different countries.
               Page groups use the first retained start even if playback continues after
               navigation. Filter by page_origin when grouping page_path to distinguish
-              identical paths on different sites.
+              identical paths on different sites. video_title groups by the title on each
+              view's first retained start, so a renamed video counts each view under the title
+              it started with. user_id groups by the user ID on each view's first retained
+              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
+              views without the key form the null group.
 
           kind: Metric set for every time bucket. Uses the same calculations and sample counts
               as the corresponding totals route.

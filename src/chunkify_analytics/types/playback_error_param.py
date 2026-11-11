@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared_params.played_range import PlayedRange
+from .shared_params.browser_context import BrowserContext
 from .shared_params.subtitle_playing_time import SubtitlePlayingTime
 from .shared_params.rendition_playing_time import RenditionPlayingTime
 from .shared_params.playback_rate_playing_time import PlaybackRatePlayingTime
@@ -121,8 +122,13 @@ class PlaybackErrorParam(TypedDict, total=False):
     the page's localStorage.
     """
 
-    browser_context: object
-    """Optional browser information supplied by the player."""
+    browser_context: Optional[BrowserContext]
+    """Browser and device information.
+
+    The Chunkify player sends every field, with null for unavailable measurements.
+    Other integrations may omit any field except schema_version. Extra properties
+    are preserved.
+    """
 
     playback_rate: Optional[float]
     """

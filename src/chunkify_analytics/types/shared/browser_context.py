@@ -9,10 +9,12 @@ __all__ = ["BrowserContext"]
 
 
 class BrowserContext(BaseModel):
-    """Browser and device information reported by the player.
+    """Browser and device information.
 
-    Unavailable measurements are null.
+    The Chunkify player sends every field, with null for unavailable measurements. Other integrations may omit any field except schema_version. Extra properties are preserved.
     """
+
+    schema_version: Literal[1]
 
     browser_name: Optional[str] = None
 
@@ -20,7 +22,7 @@ class BrowserContext(BaseModel):
 
     device_family: Optional[str] = None
 
-    device_type: Literal["desktop", "mobile", "tablet", "unknown"]
+    device_type: Optional[Literal["desktop", "mobile", "tablet", "unknown"]] = None
 
     language: Optional[str] = None
 
@@ -30,9 +32,20 @@ class BrowserContext(BaseModel):
 
     os_version: Optional[str] = None
 
-    pixel_ratio: Optional[float] = None
+    page_origin: Optional[str] = None
+    """Current document HTTP(S) origin, without credentials.
 
-    schema_version: Literal[1]
+    Null when unavailable or longer than 2048 characters.
+    """
+
+    page_path: Optional[str] = None
+    """Current document pathname, without query parameters or fragment.
+
+    Null when unavailable or longer than 2048 characters. Paths may contain
+    application-defined identifiers.
+    """
+
+    pixel_ratio: Optional[float] = None
 
     screen_height_px: Optional[int] = None
 
@@ -47,16 +60,3 @@ class BrowserContext(BaseModel):
     viewport_height_px: Optional[int] = None
 
     viewport_width_px: Optional[int] = None
-
-    page_origin: Optional[str] = None
-    """Current document HTTP(S) origin, without credentials.
-
-    Null when unavailable or longer than 2048 characters.
-    """
-
-    page_path: Optional[str] = None
-    """Current document pathname, without query parameters or fragment.
-
-    Null when unavailable or longer than 2048 characters. Paths may contain
-    application-defined identifiers.
-    """

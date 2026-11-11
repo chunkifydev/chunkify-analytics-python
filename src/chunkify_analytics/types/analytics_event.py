@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import TypeAlias
+from typing_extensions import Annotated, TypeAlias
 
+from .._utils import PropertyInfo
 from .view_ended import ViewEnded
 from .view_started import ViewStarted
 from .view_snapshot import ViewSnapshot
@@ -15,14 +16,17 @@ from .playback_state_changed import PlaybackStateChanged
 
 __all__ = ["AnalyticsEvent"]
 
-AnalyticsEvent: TypeAlias = Union[
-    ViewStarted,
-    ViewSnapshot,
-    PlaybackError,
-    ViewEnded,
-    PlaybackStateChanged,
-    RenditionChanged,
-    SeekCompleted,
-    SubtitleChanged,
-    PlaybackRateChanged,
+AnalyticsEvent: TypeAlias = Annotated[
+    Union[
+        ViewStarted,
+        ViewSnapshot,
+        PlaybackError,
+        ViewEnded,
+        PlaybackStateChanged,
+        RenditionChanged,
+        SeekCompleted,
+        SubtitleChanged,
+        PlaybackRateChanged,
+    ],
+    PropertyInfo(discriminator="event_name"),
 ]

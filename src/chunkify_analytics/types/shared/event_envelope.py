@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .browser_context import BrowserContext
 from .rendition_playing_time import RenditionPlayingTime
 
 __all__ = ["EventEnvelope"]
@@ -74,8 +75,13 @@ class EventEnvelope(BaseModel):
     the page's localStorage.
     """
 
-    browser_context: Optional[object] = None
-    """Optional browser information supplied by the player."""
+    browser_context: Optional[BrowserContext] = None
+    """Browser and device information.
+
+    The Chunkify player sends every field, with null for unavailable measurements.
+    Other integrations may omit any field except schema_version. Extra properties
+    are preserved.
+    """
 
     delivery_request_count: Optional[float] = None
 

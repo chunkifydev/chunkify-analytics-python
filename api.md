@@ -4,7 +4,6 @@
 from chunkify_analytics.types import (
     BrowserContext,
     CustomDimensions,
-    Error,
     EventContext,
     EventEnvelope,
     MetricCountRatio,
@@ -143,13 +142,11 @@ Types:
 
 ```python
 from chunkify_analytics.types import (
-    CreateProjectKeyRequest,
     CreatedProjectKey,
     DeletedProject,
     Project,
     ProjectKey,
     ProjectKeys,
-    ProjectUpdate,
     RotatedProjectKey,
 )
 ```
@@ -172,7 +169,7 @@ Methods:
 Types:
 
 ```python
-from chunkify_analytics.types import CreateProjectRequest, CreatedProject
+from chunkify_analytics.types import CreatedProject
 ```
 
 Methods:
@@ -228,13 +225,7 @@ Methods:
 Types:
 
 ```python
-from chunkify_analytics.types import (
-    Export,
-    ExportColumns,
-    ExportQuery,
-    ExportRequest,
-    ExportDownloadResponse,
-)
+from chunkify_analytics.types import Export, ExportColumns, ExportQuery, ExportDownloadResponse
 ```
 
 Methods:

@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .error import Error as Error
 from .otlp_scope import OtlpScope as OtlpScope
 from .played_range import PlayedRange as PlayedRange
 from .view_metrics import ViewMetrics as ViewMetrics

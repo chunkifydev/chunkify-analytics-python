@@ -8,7 +8,6 @@ from .view import View as View
 from .export import Export as Export
 from .health import Health as Health
 from .shared import (
-    Error as Error,
     OtlpScope as OtlpScope,
     PlayedRange as PlayedRange,
     ViewMetrics as ViewMetrics,

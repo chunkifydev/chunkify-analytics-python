@@ -85,3 +85,37 @@ jobs:
 
       - name: Run build
         run: rye build
+
+  test:
+    timeout-minutes: 10
+    name: test
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push' || github.event.pull_request.head.repo.fork) && (github.event_name != 'push' || github.event.head_commit.message != 'codegen metadata')
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install Rye
+        run: |
+          set -o pipefail
+          # Retry the whole installer, including its internal Python download.
+          for attempt in 1 2 3; do
+            if curl -fsSL --retry 3 https://rye.astral.sh/get | bash; then
+              echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "Rye installation failed on attempt $attempt; retrying in 5 seconds." >&2
+              sleep 5
+            fi
+          done
+          echo "::error::Rye installation failed after 3 attempts."
+          exit 1
+        env:
+          RYE_VERSION: '0.44.0'
+          RYE_INSTALL_OPTION: '--yes'
+
+      - name: Bootstrap
+        run: ./scripts/bootstrap
+
+      - name: Run tests
+        run: ./scripts/test

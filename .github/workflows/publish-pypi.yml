@@ -1,44 +1,48 @@
-# This workflow is triggered when a GitHub release is created.
-# It can also be run manually to re-publish to PyPI in case it failed for some reason.
-# You can run this workflow by navigating to https://www.github.com/chunkifydev/chunkify-analytics-python/actions/workflows/publish-pypi.yml
 name: Publish PyPI
 on:
   workflow_dispatch:
-
   release:
     types: [published]
 
-jobs:
-  publish:
-    if: github.repository == 'chunkifydev/chunkify-analytics-python' && !github.event.repository.private
-    name: publish
-    runs-on: ubuntu-latest
+permissions:
+  contents: read
 
+jobs:
+  build:
+    if: github.repository == 'chunkifydev/chunkify-analytics-python' && !github.event.repository.private && (github.event_name == 'release' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Install Rye
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.13'
+
+      - name: Build and check distributions
         run: |
-          set -o pipefail
-          # Retry the whole installer, including its internal Python download.
-          for attempt in 1 2 3; do
-            if curl -fsSL --retry 3 https://rye.astral.sh/get | bash; then
-              echo "$HOME/.rye/shims" >> "$GITHUB_PATH"
-              exit 0
-            fi
-            if [ "$attempt" -lt 3 ]; then
-              echo "Rye installation failed on attempt $attempt; retrying in 5 seconds." >&2
-              sleep 5
-            fi
-          done
-          echo "::error::Rye installation failed after 3 attempts."
-          exit 1
-        env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+          python -m pip install build twine
+          python -m build
+          python -m twine check dist/*
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: python-distributions
+          path: dist/*
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/chunkify-analytics-sdk/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: python-distributions
+          path: dist/
 
       - name: Publish to PyPI
-        run: |
-          bash ./bin/publish-pypi
-        env:
-          PYPI_TOKEN: ${{ secrets.CHUNKIFY_ANALYTICS_PYPI_TOKEN || secrets.PYPI_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3

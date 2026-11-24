@@ -40,6 +40,7 @@ class ExportListColumnsParams(TypedDict, total=False):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "video_title",
             "user_id",
         ],
@@ -56,10 +57,11 @@ class ExportListColumnsParams(TypedDict, total=False):
     retained start even if playback continues after navigation. Filter by
     page_origin when grouping page_path to distinguish identical paths on different
     sites. video_title groups by the title on each view's first retained start, so a
-    renamed video counts each view under the title it started with. user_id groups
-    by the user ID on each view's first retained start. Use custom.<key>, such as
-    custom.plan, to group by a custom dimension; views without the key form the null
-    group.
+    renamed video counts each view under the title it started with. delivery_format
+    groups by hls or file on each view's first retained start; views from SDKs that
+    do not report it form the null group. user_id groups by the user ID on each
+    view's first retained start. Use custom.<key>, such as custom.plan, to group by
+    a custom dimension; views without the key form the null group.
     """
 
     kind: Literal["summary", "quality", "engagement"]

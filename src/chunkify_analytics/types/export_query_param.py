@@ -28,6 +28,8 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
 
     country: str
 
+    delivery_format: Literal["hls", "file"]
+
     device_type: Literal["desktop", "mobile", "tablet", "unknown"]
 
     dimension: Union[
@@ -46,6 +48,7 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "custom_keys",
         ],
         str,
@@ -76,6 +79,7 @@ class ExportQueryParam(_ExportQueryParamReservedKeywords, total=False):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "video_title",
             "user_id",
         ],

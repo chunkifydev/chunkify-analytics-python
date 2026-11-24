@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/chunkifydev/chunkify-analytics-python/compare/v0.9.0...v0.10.0) (2026-11-24)
+
+
+### Features
+
+* **api:** add delivery_format and seek timing ([affbdbd](https://github.com/chunkifydev/chunkify-analytics-python/commit/affbdbd20f5fbc48b8b3ed0f1499f97dbbed9031))
+
 ## [0.9.0](https://github.com/chunkifydev/chunkify-analytics-python/compare/v0.0.1...v0.9.0) (2026-11-18)
 
 

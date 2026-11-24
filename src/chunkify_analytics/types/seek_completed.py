@@ -97,6 +97,14 @@ class SeekCompleted(BaseModel):
     are preserved.
     """
 
+    delivery_format: Optional[Literal["hls", "file"]] = None
+    """
+    How the player receives the media: hls for an HLS stream, file for a single
+    media file such as an MP4 rendition; null when unknown. Optional: older SDKs
+    omit it. Reports read it from each view's first start. Unlike connector_name, it
+    does not depend on the playback engine: Safari's native HLS reports html-media.
+    """
+
     delivery_request_count: Optional[float] = None
 
     delivery_throughput_bps: Optional[float] = None
@@ -122,6 +130,13 @@ class SeekCompleted(BaseModel):
     player_width_px: Optional[float] = None
 
     playing_time_ms: Optional[float] = None
+
+    previous_state_duration_ms: Optional[float] = None
+    """
+    Wall-clock time spent in state_before_seek until the seek started, excluding the
+    seek. The state after the seek is timed from when the seek ends, so each stretch
+    is reported once. Omitted by older SDKs.
+    """
 
     rebuffer_count: Optional[float] = None
 

@@ -31,6 +31,7 @@ class DimensionValues(BaseModel):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "custom_keys",
         ],
         str,

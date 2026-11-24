@@ -81,6 +81,14 @@ class PlaybackStateChanged(BaseModel):
     are preserved.
     """
 
+    delivery_format: Optional[Literal["hls", "file"]] = None
+    """
+    How the player receives the media: hls for an HLS stream, file for a single
+    media file such as an MP4 rendition; null when unknown. Optional: older SDKs
+    omit it. Reports read it from each view's first start. Unlike connector_name, it
+    does not depend on the playback engine: Safari's native HLS reports html-media.
+    """
+
     delivery_request_count: Optional[float] = None
 
     delivery_throughput_bps: Optional[float] = None

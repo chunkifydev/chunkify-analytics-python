@@ -54,6 +54,7 @@ class PlaybackRatesResource(SyncAPIResource):
         city: str | Omit = omit,
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
@@ -99,6 +100,12 @@ class PlaybackRatesResource(SyncAPIResource):
 
           country: Exact uppercase ISO 3166-1 alpha-2 country code, such as GB. Missing locations
               do not match.
+
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
 
           device_type: Exact device class. unknown matches an explicit unknown value.
 
@@ -167,6 +174,7 @@ class PlaybackRatesResource(SyncAPIResource):
                         "city": city,
                         "continent": continent,
                         "country": country,
+                        "delivery_format": delivery_format,
                         "device_type": device_type,
                         "from_": from_,
                         "limit": limit,
@@ -219,6 +227,7 @@ class AsyncPlaybackRatesResource(AsyncAPIResource):
         city: str | Omit = omit,
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
@@ -264,6 +273,12 @@ class AsyncPlaybackRatesResource(AsyncAPIResource):
 
           country: Exact uppercase ISO 3166-1 alpha-2 country code, such as GB. Missing locations
               do not match.
+
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
 
           device_type: Exact device class. unknown matches an explicit unknown value.
 
@@ -332,6 +347,7 @@ class AsyncPlaybackRatesResource(AsyncAPIResource):
                         "city": city,
                         "continent": continent,
                         "country": country,
+                        "delivery_format": delivery_format,
                         "device_type": device_type,
                         "from_": from_,
                         "limit": limit,

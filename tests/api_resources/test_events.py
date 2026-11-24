@@ -37,6 +37,7 @@ class TestEvents:
             continent="AF",
             country="SE",
             cursor="cursor",
+            delivery_format="hls",
             device_type="desktop",
             event_name="chunkify.video.view_started",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -233,6 +234,7 @@ class TestEvents:
                     "seats": 5,
                     "trial": False,
                 },
+                "delivery_format": "hls",
                 "playback_rate": 0.01,
                 "playback_rate_playing_time": [
                     {
@@ -426,6 +428,7 @@ class TestAsyncEvents:
             continent="AF",
             country="SE",
             cursor="cursor",
+            delivery_format="hls",
             device_type="desktop",
             event_name="chunkify.video.view_started",
             from_=parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -622,6 +625,7 @@ class TestAsyncEvents:
                     "seats": 5,
                     "trial": False,
                 },
+                "delivery_format": "hls",
                 "playback_rate": 0.01,
                 "playback_rate_playing_time": [
                     {

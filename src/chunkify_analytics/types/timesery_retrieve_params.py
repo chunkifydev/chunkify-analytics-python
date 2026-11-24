@@ -43,6 +43,15 @@ class TimeseryRetrieveParams(TypedDict, total=False):
     Missing locations do not match.
     """
 
+    delivery_format: Literal["hls", "file"]
+    """
+    Delivery format on the first retained view start: hls for HLS streams, file for
+    a single media file such as an MP4 rendition. Metrics use the first retained
+    view start; raw events use each event's value. Views whose SDK did not report it
+    do not match. connector_name is not a substitute: Safari plays HLS natively and
+    reports html-media.
+    """
+
     device_type: Literal["desktop", "mobile", "tablet", "unknown"]
     """Exact device class. unknown matches an explicit unknown value."""
 

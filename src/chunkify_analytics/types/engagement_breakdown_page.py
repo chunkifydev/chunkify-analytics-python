@@ -32,6 +32,7 @@ class EngagementBreakdownPage(BaseModel):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "video_title",
             "user_id",
         ],

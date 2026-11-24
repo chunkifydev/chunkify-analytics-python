@@ -55,6 +55,7 @@ class QualityResource(SyncAPIResource):
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         group_by: Union[
@@ -69,6 +70,7 @@ class QualityResource(SyncAPIResource):
                 "page_path",
                 "subtitle_language",
                 "playback_rate",
+                "delivery_format",
                 "video_title",
                 "user_id",
             ],
@@ -121,6 +123,12 @@ class QualityResource(SyncAPIResource):
               order. Video cursors from earlier versions are invalid; start a new pagination
               sequence after upgrading.
 
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
+
           device_type: Exact device class. unknown matches an explicit unknown value.
 
           from_: Inclusive RFC3339 occurrence-time lower bound, with timezone. Summary/video
@@ -136,9 +144,11 @@ class QualityResource(SyncAPIResource):
               navigation. Filter by page_origin when grouping page_path to distinguish
               identical paths on different sites. video_title groups by the title on each
               view's first retained start, so a renamed video counts each view under the title
-              it started with. user_id groups by the user ID on each view's first retained
-              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
-              views without the key form the null group.
+              it started with. delivery_format groups by hls or file on each view's first
+              retained start; views from SDKs that do not report it form the null group.
+              user_id groups by the user ID on each view's first retained start. Use
+              custom.<key>, such as custom.plan, to group by a custom dimension; views without
+              the key form the null group.
 
           limit: Maximum rows on this page. Events and videos always support pagination; summary,
               quality and engagement support it only with group_by.
@@ -205,6 +215,7 @@ class QualityResource(SyncAPIResource):
                             "continent": continent,
                             "country": country,
                             "cursor": cursor,
+                            "delivery_format": delivery_format,
                             "device_type": device_type,
                             "from_": from_,
                             "group_by": group_by,
@@ -260,6 +271,7 @@ class AsyncQualityResource(AsyncAPIResource):
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         group_by: Union[
@@ -274,6 +286,7 @@ class AsyncQualityResource(AsyncAPIResource):
                 "page_path",
                 "subtitle_language",
                 "playback_rate",
+                "delivery_format",
                 "video_title",
                 "user_id",
             ],
@@ -326,6 +339,12 @@ class AsyncQualityResource(AsyncAPIResource):
               order. Video cursors from earlier versions are invalid; start a new pagination
               sequence after upgrading.
 
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
+
           device_type: Exact device class. unknown matches an explicit unknown value.
 
           from_: Inclusive RFC3339 occurrence-time lower bound, with timezone. Summary/video
@@ -341,9 +360,11 @@ class AsyncQualityResource(AsyncAPIResource):
               navigation. Filter by page_origin when grouping page_path to distinguish
               identical paths on different sites. video_title groups by the title on each
               view's first retained start, so a renamed video counts each view under the title
-              it started with. user_id groups by the user ID on each view's first retained
-              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
-              views without the key form the null group.
+              it started with. delivery_format groups by hls or file on each view's first
+              retained start; views from SDKs that do not report it form the null group.
+              user_id groups by the user ID on each view's first retained start. Use
+              custom.<key>, such as custom.plan, to group by a custom dimension; views without
+              the key form the null group.
 
           limit: Maximum rows on this page. Events and videos always support pagination; summary,
               quality and engagement support it only with group_by.
@@ -410,6 +431,7 @@ class AsyncQualityResource(AsyncAPIResource):
                             "continent": continent,
                             "country": country,
                             "cursor": cursor,
+                            "delivery_format": delivery_format,
                             "device_type": device_type,
                             "from_": from_,
                             "group_by": group_by,

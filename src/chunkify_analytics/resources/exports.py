@@ -205,6 +205,7 @@ class ExportsResource(SyncAPIResource):
                 "page_path",
                 "subtitle_language",
                 "playback_rate",
+                "delivery_format",
                 "video_title",
                 "user_id",
             ],
@@ -239,9 +240,11 @@ class ExportsResource(SyncAPIResource):
               navigation. Filter by page_origin when grouping page_path to distinguish
               identical paths on different sites. video_title groups by the title on each
               view's first retained start, so a renamed video counts each view under the title
-              it started with. user_id groups by the user ID on each view's first retained
-              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
-              views without the key form the null group.
+              it started with. delivery_format groups by hls or file on each view's first
+              retained start; views from SDKs that do not report it form the null group.
+              user_id groups by the user ID on each view's first retained start. Use
+              custom.<key>, such as custom.plan, to group by a custom dimension; views without
+              the key form the null group.
 
           kind: Metric set for every time bucket. Uses the same calculations and sample counts
               as the corresponding totals route.
@@ -454,6 +457,7 @@ class AsyncExportsResource(AsyncAPIResource):
                 "page_path",
                 "subtitle_language",
                 "playback_rate",
+                "delivery_format",
                 "video_title",
                 "user_id",
             ],
@@ -488,9 +492,11 @@ class AsyncExportsResource(AsyncAPIResource):
               navigation. Filter by page_origin when grouping page_path to distinguish
               identical paths on different sites. video_title groups by the title on each
               view's first retained start, so a renamed video counts each view under the title
-              it started with. user_id groups by the user ID on each view's first retained
-              start. Use custom.<key>, such as custom.plan, to group by a custom dimension;
-              views without the key form the null group.
+              it started with. delivery_format groups by hls or file on each view's first
+              retained start; views from SDKs that do not report it form the null group.
+              user_id groups by the user ID on each view's first retained start. Use
+              custom.<key>, such as custom.plan, to group by a custom dimension; views without
+              the key form the null group.
 
           kind: Metric set for every time bucket. Uses the same calculations and sample counts
               as the corresponding totals route.

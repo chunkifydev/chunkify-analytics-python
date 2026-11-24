@@ -38,6 +38,15 @@ class SummaryRetrieveParams(TypedDict, total=False):
     are invalid; start a new pagination sequence after upgrading.
     """
 
+    delivery_format: Literal["hls", "file"]
+    """
+    Delivery format on the first retained view start: hls for HLS streams, file for
+    a single media file such as an MP4 rendition. Metrics use the first retained
+    view start; raw events use each event's value. Views whose SDK did not report it
+    do not match. connector_name is not a substitute: Safari plays HLS natively and
+    reports html-media.
+    """
+
     device_type: Literal["desktop", "mobile", "tablet", "unknown"]
     """Exact device class. unknown matches an explicit unknown value."""
 
@@ -60,6 +69,7 @@ class SummaryRetrieveParams(TypedDict, total=False):
             "page_path",
             "subtitle_language",
             "playback_rate",
+            "delivery_format",
             "video_title",
             "user_id",
         ],
@@ -76,10 +86,11 @@ class SummaryRetrieveParams(TypedDict, total=False):
     retained start even if playback continues after navigation. Filter by
     page_origin when grouping page_path to distinguish identical paths on different
     sites. video_title groups by the title on each view's first retained start, so a
-    renamed video counts each view under the title it started with. user_id groups
-    by the user ID on each view's first retained start. Use custom.<key>, such as
-    custom.plan, to group by a custom dimension; views without the key form the null
-    group.
+    renamed video counts each view under the title it started with. delivery_format
+    groups by hls or file on each view's first retained start; views from SDKs that
+    do not report it form the null group. user_id groups by the user ID on each
+    view's first retained start. Use custom.<key>, such as custom.plan, to group by
+    a custom dimension; views without the key form the null group.
     """
 
     limit: int

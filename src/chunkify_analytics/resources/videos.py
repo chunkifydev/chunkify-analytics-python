@@ -56,6 +56,7 @@ class VideosResource(SyncAPIResource):
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
@@ -103,6 +104,12 @@ class VideosResource(SyncAPIResource):
           cursor: Use next_cursor from the previous page. Keep the same filters, sort_by and
               order. Video cursors from earlier versions are invalid; start a new pagination
               sequence after upgrading.
+
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
 
           device_type: Exact device class. unknown matches an explicit unknown value.
 
@@ -182,6 +189,7 @@ class VideosResource(SyncAPIResource):
                         "continent": continent,
                         "country": country,
                         "cursor": cursor,
+                        "delivery_format": delivery_format,
                         "device_type": device_type,
                         "from_": from_,
                         "limit": limit,
@@ -237,6 +245,7 @@ class AsyncVideosResource(AsyncAPIResource):
         continent: Literal["AF", "AN", "AS", "EU", "NA", "OC", "SA"] | Omit = omit,
         country: str | Omit = omit,
         cursor: str | Omit = omit,
+        delivery_format: Literal["hls", "file"] | Omit = omit,
         device_type: Literal["desktop", "mobile", "tablet", "unknown"] | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         limit: int | Omit = omit,
@@ -284,6 +293,12 @@ class AsyncVideosResource(AsyncAPIResource):
           cursor: Use next_cursor from the previous page. Keep the same filters, sort_by and
               order. Video cursors from earlier versions are invalid; start a new pagination
               sequence after upgrading.
+
+          delivery_format: Delivery format on the first retained view start: hls for HLS streams, file for
+              a single media file such as an MP4 rendition. Metrics use the first retained
+              view start; raw events use each event's value. Views whose SDK did not report it
+              do not match. connector_name is not a substitute: Safari plays HLS natively and
+              reports html-media.
 
           device_type: Exact device class. unknown matches an explicit unknown value.
 
@@ -363,6 +378,7 @@ class AsyncVideosResource(AsyncAPIResource):
                         "continent": continent,
                         "country": country,
                         "cursor": cursor,
+                        "delivery_format": delivery_format,
                         "device_type": device_type,
                         "from_": from_,
                         "limit": limit,
